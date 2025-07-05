@@ -24,7 +24,7 @@ use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
 
 // Configuració
 $connectionString = getenv("AZURE_STORAGE_CONNECTION_STRING");
-$containerName = "imatges";  // Canvia açò pel nom del teu contenidor
+$containerName = "documentspdf";  // Canvia açò pel nom del teu contenidor
 
 $blobClient = BlobRestProxy::createBlobService($connectionString);
 
@@ -52,15 +52,15 @@ if (isset($_POST['nom'])) {
 //echo "$nom $cognoms $email cicle";
 
 $extensio = "";
-$nomImatge = "";
+$nomDocument = "";
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_FILES["foto"])) {
 
     $uploadedFile = $_FILES["foto"];
     //echo $uploadedFile["type"];
-    $nomImatge = $uploadedFile["name"];
+    $nomDocument = $uploadedFile["name"];
     $extensio = substr($uploadedFile["name"], strrpos($uploadedFile["name"], "."));
-    if ($uploadedFile["type"] !== "image/jpg" && $uploadedFile["type"] !== "image/jpeg" && $uploadedFile["type"] !== "image/png" && $uploadedFile["type"] !== "image/gif") {
-        header("Location: index.php?error=imatgetipus");
+    if ($uploadedFile["type"] !== "application/pdf") {
+        header("Location: index.php?error=documenttipus");
         //    echo "<p style='color:red;'>Només es permeten arxius d'imatge.</p>";
         die();
     } else {
@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_FILES["foto"])) {
             //echo "<p style='color:green;'>Arxiu $blobName pujat correctament.</p>";
         } catch (ServiceException $e) {
             // echo "<p style='color:red;'>Error en pujar: " . $e->getMessage() . "</p>";
-            header("Location: index.php?error=imatgepujar");
+            header("Location: index.php?error=documentpujar");
             die();
         }
     }
@@ -130,16 +130,15 @@ $dsn = "mysql:host={$dbHost};dbname={$dbName};charset=utf8mb4";
                     // Exemple: consulta sencilla
                     // $stmt = $pdo->query('SELECT NOW() AS data_actual;');
                     //extensio
-                    $sql = "INSERT INTO usuari (`nom`, `cognoms`,`email`,`cicle`,`imatge`) VALUES ('" . $nom . "','" . $cognoms . "','" . $email . "','" . $cicle . "','" . $nomImatge . "')";
+                    $sql = "INSERT INTO usuari (`nom`, `cognoms`,`email`,`cicle`,`document`) VALUES ('" . $nom . "','" . $cognoms . "','" . $email . "','" . $cicle . "','" . $nomDocument . "')";
                     //$stmt = $pdo->query('SELECT NOW() AS data_actual;');
                     $stmt = $pdo->query($sql);
 
                     echo "<div id=\"contUsuaris\">";
                     echo "<p>Usuari creat correctament</p>";
-                    echo "<p>Usuari creat correctament</p>";
                     echo "</p>";
 
-                    echo '</div>';
+                    //echo '</div>';
                     //$fila = $stmt->fetch();
                     //echo "Connectat correctament. Hora del servidor: " . $fila['data_actual'];
                     /*echo "<ul>";
@@ -155,7 +154,7 @@ $dsn = "mysql:host={$dbHost};dbname={$dbName};charset=utf8mb4";
                         <?php
                     }
                     echo "</ul>";*/
-                    echo "<div id=\"contUsuaris\">";
+                    /*echo "<div id=\"contUsuaris\">";
                     $sql = "SELECT * FROM usuari";
                     $stmt = $pdo->query($sql);
                     while ($fila = $stmt->fetch()) {
@@ -168,7 +167,7 @@ $dsn = "mysql:host={$dbHost};dbname={$dbName};charset=utf8mb4";
                         echo '<p><a href="https://cefirestorage02raul.blob.core.windows.net/imatges/' . $fila['imatge'] . '"><img src="https://cefirestorage02raul.blob.core.windows.net/imatges/' . $fila['imatge'] . '" alt="' . $fila['imatge'] . '" class="imatgeUsuari"></a></p>';
                         echo '</div>';
                     }
-                    echo "</div>";
+                    echo "</div>";*/
                 } catch (PDOException $e) {
                     error_log('Error de connexió PDO: ' . $e->getMessage());
                     echo "Error connectant amb la base de dades: " . htmlspecialchars($e->getMessage());
