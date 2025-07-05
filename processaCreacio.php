@@ -133,41 +133,9 @@ $dsn = "mysql:host={$dbHost};dbname={$dbName};charset=utf8mb4";
                     $sql = "INSERT INTO usuari (`nom`, `cognoms`,`email`,`cicle`,`document`) VALUES ('" . $nom . "','" . $cognoms . "','" . $email . "','" . $cicle . "','" . $nomDocument . "')";
                     //$stmt = $pdo->query('SELECT NOW() AS data_actual;');
                     $stmt = $pdo->query($sql);
-
                     echo "<div id=\"contUsuaris\">";
                     echo "<p>Usuari creat correctament</p>";
-                    echo "</p>";
 
-                    //echo '</div>';
-                    //$fila = $stmt->fetch();
-                    //echo "Connectat correctament. Hora del servidor: " . $fila['data_actual'];
-                    /*echo "<ul>";
-
-                    //llistar imatges
-                    /*foreach ($blobs as $blob) {
-                        ?>
-                        <li>
-                            <a href="<?= htmlspecialchars($blob->getUrl()) ?>" target="_blank">
-                                <?= htmlspecialchars($blob->getName()) ?>
-                            </a>
-                        </li>
-                        <?php
-                    }
-                    echo "</ul>";*/
-                    /*echo "<div id=\"contUsuaris\">";
-                    $sql = "SELECT * FROM usuari";
-                    $stmt = $pdo->query($sql);
-                    while ($fila = $stmt->fetch()) {
-                        echo '<div class="cardUsuari">';
-                        echo '<p><strong>ID: </strong>' . $fila['id'] . '</p>';
-                        echo '<p>' . $fila['nom'] . '</p>';
-                        echo '<p>' . $fila['cognoms'] . '</p>';
-                        echo '<p>' . $fila['email'] . '</p>';
-                        echo '<p>' . $fila['data'] . '</p>';
-                        echo '<p><a href="https://cefirestorage02raul.blob.core.windows.net/imatges/' . $fila['imatge'] . '"><img src="https://cefirestorage02raul.blob.core.windows.net/imatges/' . $fila['imatge'] . '" alt="' . $fila['imatge'] . '" class="imatgeUsuari"></a></p>';
-                        echo '</div>';
-                    }
-                    echo "</div>";*/
                 } catch (PDOException $e) {
                     error_log('Error de connexió PDO: ' . $e->getMessage());
                     echo "Error connectant amb la base de dades: " . htmlspecialchars($e->getMessage());
@@ -176,7 +144,8 @@ $dsn = "mysql:host={$dbHost};dbname={$dbName};charset=utf8mb4";
                 ?>
             </div>
             <p>
-                <a href="../index.php">Tornar a index.php</a>
+                <a href="../index.php">Crear nou usuari</a>
+                <a href="https://mostrarusuaris01-end5dwa3csbkb3bf.spaincentral-01.azurewebsites.net">Mostrar usuaris</a>
             </p>
         </main>
         <footer>
