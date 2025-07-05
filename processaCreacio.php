@@ -53,9 +53,9 @@ if (isset($_POST['nom'])) {
 
 $extensio = "";
 $nomDocument = "";
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_FILES["foto"])) {
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_FILES["document"])) {
 
-    $uploadedFile = $_FILES["foto"];
+    $uploadedFile = $_FILES["document"];
     //echo $uploadedFile["type"];
     $nomDocument = $uploadedFile["name"];
     $extensio = substr($uploadedFile["name"], strrpos($uploadedFile["name"], "."));
