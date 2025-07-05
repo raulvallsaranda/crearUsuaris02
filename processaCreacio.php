@@ -135,7 +135,6 @@ $dsn = "mysql:host={$dbHost};dbname={$dbName};charset=utf8mb4";
                     $stmt = $pdo->query($sql);
                     echo "<div id=\"contUsuaris\">";
                     echo "<p>Usuari creat correctament</p>";
-
                 } catch (PDOException $e) {
                     error_log('Error de connexió PDO: ' . $e->getMessage());
                     echo "Error connectant amb la base de dades: " . htmlspecialchars($e->getMessage());
@@ -145,6 +144,8 @@ $dsn = "mysql:host={$dbHost};dbname={$dbName};charset=utf8mb4";
             </div>
             <p>
                 <a href="../index.php">Crear nou usuari</a>
+            </p>
+            <p>
                 <a href="https://mostrarusuaris01-end5dwa3csbkb3bf.spaincentral-01.azurewebsites.net">Mostrar usuaris</a>
             </p>
         </main>
