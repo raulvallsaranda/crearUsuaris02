@@ -146,7 +146,7 @@ $dsn = "mysql:host={$dbHost};dbname={$dbName};charset=utf8mb4";
                 <a href="../index.php">Crear nou usuari</a>
             </p>
             <p>
-                <a href="https://mostrarusuaris01-end5dwa3csbkb3bf.spaincentral-01.azurewebsites.net">Mostrar usuaris</a>
+                <a href="https://mostrarusuaris01-end5dwa3csbkb3bf.spaincentral-01.azurewebsites.net">Mostrar usuaris: Webapp01</a>
             </p>
         </main>
         <footer>
