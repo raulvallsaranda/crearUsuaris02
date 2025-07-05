@@ -1,0 +1,16 @@
+{
+    "name": "cefireraul/crear-usuaris02",
+    "autoload": {
+        "psr-4": {
+            "Cefireraul\\CrearUsuaris02\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Raül Valls"
+        }
+    ],
+    "require": {
+      "microsoft/azure-storage-blob": "^1.5"
+    }
+}
